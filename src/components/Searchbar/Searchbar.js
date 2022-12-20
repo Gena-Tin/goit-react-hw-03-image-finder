@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; 
 import React, { Component } from 'react';
 import css from './Searchbar.module.css';
 
@@ -6,18 +7,18 @@ class Searchbar extends Component {
     searchQuery: '',
   };
 
-  handleSubmit = (e) =>{
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state);
     this.resetForm();
-  }
+  };
   resetForm = () => {
-    this.setState({searchQuery: ''})
-  }
-  handleChange = (e) => {
+    this.setState({ searchQuery: '' });
+  };
+  handleChange = e => {
     const { name, value } = e.currentTarget;
-    this.setState({[name]: value});
-  }
+    this.setState({ [name]: value });
+  };
 
   render() {
     return (
@@ -29,8 +30,8 @@ class Searchbar extends Component {
 
           <input
             className={css.input}
-            name = "searchQuery"
-            value = {this.state.searchQuery}
+            name="searchQuery"
+            value={this.state.searchQuery}
             onChange={this.handleChange}
             type="text"
             autoComplete="off"
@@ -44,3 +45,7 @@ class Searchbar extends Component {
 }
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
